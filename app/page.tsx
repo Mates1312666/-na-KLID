@@ -39,23 +39,26 @@ const lekarnaDocs = [
 
 // ========== AUTOSERVIS DATA ==========
 const autoservisPovinnosti = [
-  { id:1,  title:'STK vozidel – firemní flotila', cat:'Revize', date:'10. 4.', person:'Karel V.', status:'overdue', done:false },
-  { id:2,  title:'Školení BOZP – mechanici', cat:'BOZP', date:'20. 4.', person:'Pavel N.', status:'warning', done:false },
-  { id:3,  title:'Revize zdvihacího zařízení', cat:'Revize', date:'25. 4.', person:'Karel V.', status:'warning', done:false },
-  { id:4,  title:'Smlouva – dodavatel náhradních dílů', cat:'Smlouvy', date:'30. 4.', person:'Karel V.', status:'normal', done:false },
-  { id:5,  title:'Kontrola hasicích přístrojů', cat:'PO', date:'30. 4.', person:'Pavel N.', status:'done', done:true },
-  { id:6,  title:'GDPR – záznamy zpracování', cat:'Legislativa', date:'1. 5.', person:'Pavel N.', status:'done', done:true },
-  { id:7,  title:'Revize elektrické instalace', cat:'Revize', date:'15. 5.', person:'Karel V.', status:'done', done:true },
-  { id:8,  title:'Smlouva – leasing vozidel', cat:'Smlouvy', date:'15. 5.', person:'Karel V.', status:'normal', done:false },
-  { id:9,  title:'Certifikát – ekologická likvidace odpadů', cat:'Legislativa', date:'20. 5.', person:'Pavel N.', status:'normal', done:false },
-  { id:10, title:'Školení PO – zaměstnanci', cat:'PO', date:'25. 5.', person:'Lucie M.', status:'normal', done:false },
-  { id:11, title:'Revize kompresorů', cat:'Revize', date:'1. 6.', person:'Karel V.', status:'normal', done:false },
-  { id:12, title:'Pojistná smlouva – provozovna', cat:'Smlouvy', date:'5. 6.', person:'Karel V.', status:'normal', done:false },
-  { id:13, title:'Záznamy o nakládání s oleji', cat:'BOZP', date:'30. 4.', person:'Lucie M.', status:'warning', done:false },
-  { id:14, title:'Smlouva – odvoz nebezpečného odpadu', cat:'Smlouvy', date:'10. 6.', person:'Lucie M.', status:'normal', done:false },
-  { id:15, title:'Školení – práce s chemickými látkami', cat:'Legislativa', date:'15. 6.', person:'Pavel N.', status:'normal', done:false },
-  { id:16, title:'Cvičení evakuace', cat:'PO', date:'20. 6.', person:'Karel V.', status:'done', done:true },
-  { id:17, title:'Revize – zdvihák 2026', cat:'Revize', date:'15. 5.', person:'Karel V.', status:'done', done:true },
+  { id:1,  title:'STK vozidel – firemní flotila', cat:'Revize', date:'1. 4.', person:'Karel V.', status:'overdue', done:false },
+  { id:2,  title:'Revize zdvihacího zařízení', cat:'Revize', date:'5. 4.', person:'Karel V.', status:'overdue', done:false },
+  { id:3,  title:'Záznamy o nakládání s oleji – Q1', cat:'BOZP', date:'8. 4.', person:'Lucie M.', status:'overdue', done:false },
+  { id:4,  title:'Smlouva – servis klimatizace', cat:'Smlouvy', date:'10. 4.', person:'Karel V.', status:'overdue', done:false },
+  { id:5,  title:'Školení BOZP – mechanici', cat:'BOZP', date:'20. 4.', person:'Pavel N.', status:'warning', done:false },
+  { id:6,  title:'Kontrola hasicích přístrojů', cat:'PO', date:'25. 4.', person:'Pavel N.', status:'warning', done:false },
+  { id:7,  title:'Smlouva – dodavatel náhradních dílů', cat:'Smlouvy', date:'30. 4.', person:'Karel V.', status:'normal', done:false },
+  { id:8,  title:'Certifikát – ekologická likvidace odpadů', cat:'Legislativa', date:'1. 5.', person:'Pavel N.', status:'normal', done:false },
+  { id:9,  title:'GDPR – záznamy zpracování', cat:'Legislativa', date:'1. 5.', person:'Lucie M.', status:'done', done:true },
+  { id:10, title:'Revize – zdvihák 2026', cat:'Revize', date:'15. 5.', person:'Karel V.', status:'done', done:true },
+  { id:11, title:'Revize elektrické instalace', cat:'Revize', date:'15. 5.', person:'Karel V.', status:'normal', done:false },
+  { id:12, title:'Smlouva – leasing vozidel', cat:'Smlouvy', date:'15. 5.', person:'Karel V.', status:'normal', done:false },
+  { id:13, title:'Školení PO – zaměstnanci', cat:'PO', date:'25. 5.', person:'Lucie M.', status:'normal', done:false },
+  { id:14, title:'Revize kompresorů', cat:'Revize', date:'1. 6.', person:'Karel V.', status:'normal', done:false },
+  { id:15, title:'Pojistná smlouva – provozovna', cat:'Smlouvy', date:'5. 6.', person:'Karel V.', status:'normal', done:false },
+  { id:16, title:'Školení – práce s chemickými látkami', cat:'Legislativa', date:'10. 6.', person:'Pavel N.', status:'normal', done:false },
+  { id:17, title:'Smlouva – odvoz nebezpečného odpadu', cat:'Smlouvy', date:'10. 6.', person:'Lucie M.', status:'normal', done:false },
+  { id:18, title:'Certifikát – práce s elektrozařízením', cat:'Legislativa', date:'15. 6.', person:'Pavel N.', status:'normal', done:false },
+  { id:19, title:'Kontrola lékárničky v dílně', cat:'BOZP', date:'20. 6.', person:'Lucie M.', status:'normal', done:false },
+  { id:20, title:'Cvičení evakuace', cat:'PO', date:'20. 6.', person:'Karel V.', status:'done', done:true },
 ]
 
 const autoservisDocs = [
@@ -77,6 +80,7 @@ const autoservisProfiles = [
   { id:1, name:'Karel Vomáčka', initials:'KV', role:'Vedoucí servisu', email:'karel@autoserviskovar.cz', color:'#E24B4A' },
   { id:2, name:'Pavel Novák', initials:'PN', role:'Mechanik', email:'pavel@autoserviskovar.cz', color:'#534AB7' },
   { id:3, name:'Lucie Marková', initials:'LM', role:'Administrativa', email:'lucie@autoserviskovar.cz', color:'#1D9E75' },
+  { id:4, name:'Tomáš Řezníček', initials:'TR', role:'Mechanik', email:'tomas@autoserviskovar.cz', color:'#EF9F27' },
 ]
 
 const firmy = [
@@ -100,9 +104,14 @@ const plans = [
   { id:'enterprise', name:'Enterprise', price:'1 490 Kč', period:'/měsíc', desc:'Pro větší firmy', features:['Více firem/poboček','White-label','SSO přihlášení','API přístup','Dedikovaná podpora'], highlight:false },
 ]
 
-const predavaniHistory = [
-  { id:1, od:'Karel Beneš', na:'Jana Nováková', datum:'Leden 2025', stav:'done' },
+const predavaniHistoryLekarna = [
+  { id:1, od:'Karel Beneš', na:'Jana Nováková', datum:'Leden 2025', stav:'done', pozn:'' },
   { id:2, od:'—', na:'Marie Horáková', datum:'Září 2024', stav:'done', pozn:'Nástup nové asistentky' },
+]
+
+const predavaniHistoryAutoservis = [
+  { id:1, od:'Tomáš Dvořák', na:'Karel Vomáčka', datum:'Březen 2024', stav:'done', pozn:'Změna vedoucího servisu' },
+  { id:2, od:'—', na:'Lucie Marková', datum:'Červen 2024', stav:'done', pozn:'Nástup administrativy' },
 ]
 
 const predavaniChecklist = [
@@ -132,7 +141,7 @@ export default function Home() {
   const [newTitle, setNewTitle] = useState('')
   const [newCat, setNewCat] = useState('BOZP')
   const [newDate, setNewDate] = useState('')
-  const [newPerson, setNewPerson] = useState('Jana Nováková')
+  const [newPerson, setNewPerson] = useState('')
   const [activePlan, setActivePlan] = useState('business')
   const [firma, setFirma] = useState('Lékárna U Koruny s.r.o.')
   const [ico, setIco] = useState('12345678')
@@ -162,7 +171,8 @@ export default function Home() {
 
   const addPovinnost = () => {
     if (!newTitle.trim()) return
-    const parts = newPerson.split(' ')
+    const person = newPerson || currentProfiles[0]?.name || ''
+    const parts = person.split(' ')
     setItems(prev => [...prev, { id:Date.now(), title:newTitle, cat:newCat, date:newDate||'—', person:parts[0]+' '+parts[1]?.[0]+'.', status:'normal', done:false }])
     setNewTitle(''); setNewDate(''); setShowModal(false)
   }
@@ -558,11 +568,19 @@ export default function Home() {
             {/* PŘEDÁVÁNÍ AGENDY */}
             {activePage === 'predavani' && (
               <div>
-                <div style={{background:'#fffdf0', border:'0.5px solid #fde68a', borderRadius:'10px', padding:'10px 14px', marginBottom:'14px', display:'flex', alignItems:'center', gap:'10px'}}>
-                  <span>⇄</span>
-                  <span style={{fontWeight:'500', color:'#92400e', fontSize:'13px'}}>Probíhá předávání agendy · Petr Kovář odchází 30. 4. 2026</span>
-                  <span style={{marginLeft:'auto', fontSize:'12px', color:'#92400e', fontWeight:'500'}}>{checkPct} % dokončeno</span>
-                </div>
+                {activeFirma === 'lekarna' && (
+                  <div style={{background:'#fffdf0', border:'0.5px solid #fde68a', borderRadius:'10px', padding:'10px 14px', marginBottom:'14px', display:'flex', alignItems:'center', gap:'10px'}}>
+                    <span>⇄</span>
+                    <span style={{fontWeight:'500', color:'#92400e', fontSize:'13px'}}>Probíhá předávání agendy · Petr Kovář odchází 30. 4. 2026</span>
+                    <span style={{marginLeft:'auto', fontSize:'12px', color:'#92400e', fontWeight:'500'}}>{checkPct} % dokončeno</span>
+                  </div>
+                )}
+                {activeFirma === 'autoservis' && (
+                  <div style={{background:'#f0fdf4', border:'0.5px solid #a7f3d0', borderRadius:'10px', padding:'10px 14px', marginBottom:'14px', display:'flex', alignItems:'center', gap:'10px'}}>
+                    <span>⇄</span>
+                    <span style={{fontWeight:'500', color:'#065f46', fontSize:'13px'}}>Žádné aktivní předávání agendy · vše je v pořádku</span>
+                  </div>
+                )}
 
                 <div style={{display:'grid', gridTemplateColumns:'1.2fr 1fr', gap:'12px'}}>
                   <div>
@@ -632,7 +650,7 @@ export default function Home() {
 
                     <div style={c.card}>
                       <div style={{fontSize:'13px', fontWeight:'500', marginBottom:'12px', color:'#1a1a2e'}}>Historie předávání</div>
-                      {[...predavaniLog.map(h => ({od:h.od, na:h.na, datum:h.datum, pozn:''})), ...predavaniHistory.map(h => ({od:h.od, na:h.na, datum:h.datum, pozn:h.pozn||''}))].map((h, i) => (
+                      {[...predavaniLog.map(h => ({od:h.od, na:h.na, datum:h.datum, pozn:''})), ...(activeFirma==='lekarna'?predavaniHistoryLekarna:predavaniHistoryAutoservis).map(h => ({od:h.od, na:h.na, datum:h.datum, pozn:h.pozn||''}))].map((h, i) => (
                         <div key={i} style={{display:'flex', gap:'10px', padding:'8px 0', borderBottom:'0.5px solid #f5f3ef'}}>
                           <div style={{width:'8px', height:'8px', borderRadius:'50%', background:'#1D9E75', marginTop:'4px', flexShrink:0}}></div>
                           <div>
@@ -718,17 +736,26 @@ export default function Home() {
         <div style={{position:'fixed', inset:0, background:'rgba(15,15,30,0.5)', zIndex:50, display:'flex', alignItems:'center', justifyContent:'center'}}>
           <div style={{background:'#fff', borderRadius:'14px', padding:'22px', width:'340px'}}>
             <div style={{fontSize:'15px', fontWeight:'500', marginBottom:'16px', color:'#1a1a2e'}}>Nová povinnost</div>
-            {([
-              ['Název', <input key='n' value={newTitle} onChange={e=>setNewTitle(e.target.value)} placeholder='např. Revize hasicích přístrojů' style={{width:'100%',padding:'7px 10px',border:'0.5px solid #d4d0c8',borderRadius:'8px',fontSize:'13px',boxSizing:'border-box' as const}} />],
-              ['Kategorie', <select key='c' value={newCat} onChange={e=>setNewCat(e.target.value)} style={{width:'100%',padding:'7px 10px',border:'0.5px solid #d4d0c8',borderRadius:'8px',fontSize:'13px'}}>{['BOZP','Revize','Smlouvy','Legislativa','PO'].map(cat=><option key={cat}>{cat}</option>)}</select>],
-              ['Termín', <input key='d' value={newDate} onChange={e=>setNewDate(e.target.value)} placeholder='DD. MM. RRRR' style={{width:'100%',padding:'7px 10px',border:'0.5px solid #d4d0c8',borderRadius:'8px',fontSize:'13px',boxSizing:'border-box' as const}} />],
-              ['Odpovědná osoba', <select key='p' value={newPerson} onChange={e=>setNewPerson(e.target.value)} style={{width:'100%',padding:'7px 10px',border:'0.5px solid #d4d0c8',borderRadius:'8px',fontSize:'13px'}}>{profiles.map(p=><option key={p.id}>{p.name}</option>)}</select>],
-            ] as [string, React.ReactNode][]).map(([label, input]) => (
-              <div key={label as string} style={{marginBottom:'10px'}}>
-                <div style={{fontSize:'11px', color:'#666', marginBottom:'3px', fontWeight:'500'}}>{label}</div>
-                {input}
-              </div>
-            ))}
+            <div style={{marginBottom:'10px'}}>
+              <div style={{fontSize:'11px', color:'#666', marginBottom:'3px', fontWeight:'500'}}>Název</div>
+              <input value={newTitle} onChange={e=>setNewTitle(e.target.value)} placeholder='např. Revize hasicích přístrojů' style={{width:'100%',padding:'7px 10px',border:'0.5px solid #d4d0c8',borderRadius:'8px',fontSize:'13px',boxSizing:'border-box' as const}} />
+            </div>
+            <div style={{marginBottom:'10px'}}>
+              <div style={{fontSize:'11px', color:'#666', marginBottom:'3px', fontWeight:'500'}}>Kategorie</div>
+              <select value={newCat} onChange={e=>setNewCat(e.target.value)} style={{width:'100%',padding:'7px 10px',border:'0.5px solid #d4d0c8',borderRadius:'8px',fontSize:'13px'}}>
+                {['BOZP','Revize','Smlouvy','Legislativa','PO'].map(cat=><option key={cat}>{cat}</option>)}
+              </select>
+            </div>
+            <div style={{marginBottom:'10px'}}>
+              <div style={{fontSize:'11px', color:'#666', marginBottom:'3px', fontWeight:'500'}}>Termín</div>
+              <input value={newDate} onChange={e=>setNewDate(e.target.value)} placeholder='DD. MM. RRRR' style={{width:'100%',padding:'7px 10px',border:'0.5px solid #d4d0c8',borderRadius:'8px',fontSize:'13px',boxSizing:'border-box' as const}} />
+            </div>
+            <div style={{marginBottom:'10px'}}>
+              <div style={{fontSize:'11px', color:'#666', marginBottom:'3px', fontWeight:'500'}}>Odpovědná osoba</div>
+              <select value={newPerson || currentProfiles[0]?.name} onChange={e=>setNewPerson(e.target.value)} style={{width:'100%',padding:'7px 10px',border:'0.5px solid #d4d0c8',borderRadius:'8px',fontSize:'13px'}}>
+                {currentProfiles.map(p=><option key={p.id} value={p.name}>{p.name}</option>)}
+              </select>
+            </div>
             <div style={{display:'flex', gap:'8px', marginTop:'16px'}}>
               <button onClick={addPovinnost} style={{flex:1, padding:'8px', borderRadius:'8px', border:'none', background:'#534AB7', color:'#fff', fontSize:'13px', fontWeight:'500', cursor:'pointer'}}>Uložit</button>
               <button onClick={() => setShowModal(false)} style={{padding:'8px 16px', borderRadius:'8px', border:'0.5px solid #d4d0c8', background:'#fff', fontSize:'13px', cursor:'pointer'}}>Zrušit</button>
@@ -737,7 +764,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* MODAL – nahrání dokumentu */}
+            {/* MODAL – nahrání dokumentu */}
       {showUploadModal && (
         <div style={{position:'fixed', inset:0, background:'rgba(15,15,30,0.5)', zIndex:50, display:'flex', alignItems:'center', justifyContent:'center'}}>
           <div style={{background:'#fff', borderRadius:'14px', padding:'22px', width:'360px'}}>
