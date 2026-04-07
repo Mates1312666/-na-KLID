@@ -1,7 +1,8 @@
 'use client'
 import { useState, useRef } from 'react'
 
-const initialPovinnosti = [
+// ========== LÉKÁRNA DATA ==========
+const lekarnaPovinnosti = [
   { id:1,  title:'Revize el. zařízení', cat:'Revize', date:'15. 4.', person:'Jana N.', status:'overdue', done:false },
   { id:2,  title:'Školení BOZP', cat:'BOZP', date:'18. 4.', person:'Petr K.', status:'warning', done:false },
   { id:3,  title:'Kontrola lékárničky', cat:'BOZP', date:'22. 4.', person:'Jana N.', status:'warning', done:false },
@@ -21,7 +22,7 @@ const initialPovinnosti = [
   { id:16, title:'Evakuační cvičení', cat:'PO', date:'20. 6.', person:'Jana N.', status:'done', done:true },
 ]
 
-const sampleDocs = [
+const lekarnaDocs = [
   { id:1,  name:'Revizní zpráva – el. zařízení 2024', cat:'Revize', ext:'PDF', by:'Jana N.', date:'10. 3. 2024', validity:'15. 4. 2026', state:'expired', size:'1.2 MB', real:false },
   { id:2,  name:'Školení BOZP – prezenční listina', cat:'BOZP', ext:'PDF', by:'Petr K.', date:'2. 4. 2026', validity:'2. 4. 2027', state:'ok', size:'0.8 MB', real:false },
   { id:3,  name:'Smlouva – úklid prostor 2025', cat:'Smlouvy', ext:'PDF', by:'Jana N.', date:'1. 5. 2025', validity:'30. 4. 2026', state:'expiring', size:'0.5 MB', real:false },
@@ -34,6 +35,53 @@ const sampleDocs = [
   { id:10, name:'Hygiena – certifikát pracoviště', cat:'Legislativa', ext:'PDF', by:'Marie H.', date:'20. 11. 2024', validity:'20. 11. 2026', state:'ok', size:'0.7 MB', real:false },
   { id:11, name:'Smlouva – dodavatel léků 2026', cat:'Smlouvy', ext:'PDF', by:'Jana N.', date:'1. 1. 2026', validity:'31. 12. 2026', state:'ok', size:'0.9 MB', real:false },
   { id:12, name:'Školení PO – prezenční listina', cat:'PO', ext:'PDF', by:'Petr K.', date:'10. 2. 2026', validity:'10. 2. 2027', state:'ok', size:'0.5 MB', real:false },
+]
+
+// ========== AUTOSERVIS DATA ==========
+const autoservisPovinnosti = [
+  { id:1,  title:'STK vozidel – firemní flotila', cat:'Revize', date:'10. 4.', person:'Karel V.', status:'overdue', done:false },
+  { id:2,  title:'Školení BOZP – mechanici', cat:'BOZP', date:'20. 4.', person:'Pavel N.', status:'warning', done:false },
+  { id:3,  title:'Revize zdvihacího zařízení', cat:'Revize', date:'25. 4.', person:'Karel V.', status:'warning', done:false },
+  { id:4,  title:'Smlouva – dodavatel náhradních dílů', cat:'Smlouvy', date:'30. 4.', person:'Karel V.', status:'normal', done:false },
+  { id:5,  title:'Kontrola hasicích přístrojů', cat:'PO', date:'30. 4.', person:'Pavel N.', status:'done', done:true },
+  { id:6,  title:'GDPR – záznamy zpracování', cat:'Legislativa', date:'1. 5.', person:'Pavel N.', status:'done', done:true },
+  { id:7,  title:'Revize elektrické instalace', cat:'Revize', date:'15. 5.', person:'Karel V.', status:'done', done:true },
+  { id:8,  title:'Smlouva – leasing vozidel', cat:'Smlouvy', date:'15. 5.', person:'Karel V.', status:'normal', done:false },
+  { id:9,  title:'Certifikát – ekologická likvidace odpadů', cat:'Legislativa', date:'20. 5.', person:'Pavel N.', status:'normal', done:false },
+  { id:10, title:'Školení PO – zaměstnanci', cat:'PO', date:'25. 5.', person:'Lucie M.', status:'normal', done:false },
+  { id:11, title:'Revize kompresorů', cat:'Revize', date:'1. 6.', person:'Karel V.', status:'normal', done:false },
+  { id:12, title:'Pojistná smlouva – provozovna', cat:'Smlouvy', date:'5. 6.', person:'Karel V.', status:'normal', done:false },
+  { id:13, title:'Záznamy o nakládání s oleji', cat:'BOZP', date:'30. 4.', person:'Lucie M.', status:'warning', done:false },
+  { id:14, title:'Smlouva – odvoz nebezpečného odpadu', cat:'Smlouvy', date:'10. 6.', person:'Lucie M.', status:'normal', done:false },
+  { id:15, title:'Školení – práce s chemickými látkami', cat:'Legislativa', date:'15. 6.', person:'Pavel N.', status:'normal', done:false },
+  { id:16, title:'Cvičení evakuace', cat:'PO', date:'20. 6.', person:'Karel V.', status:'done', done:true },
+  { id:17, title:'Revize – zdvihák 2026', cat:'Revize', date:'15. 5.', person:'Karel V.', status:'done', done:true },
+]
+
+const autoservisDocs = [
+  { id:1,  name:'STK protokol – VW Transporter', cat:'Revize', ext:'PDF', by:'Karel V.', date:'5. 3. 2026', validity:'5. 3. 2027', state:'ok', size:'0.5 MB', real:false },
+  { id:2,  name:'Školení BOZP – prezenční listina', cat:'BOZP', ext:'PDF', by:'Pavel N.', date:'2. 4. 2026', validity:'2. 4. 2027', state:'ok', size:'0.8 MB', real:false },
+  { id:3,  name:'Smlouva – náhradní díly 2025', cat:'Smlouvy', ext:'PDF', by:'Karel V.', date:'1. 5. 2025', validity:'30. 4. 2026', state:'expiring', size:'0.5 MB', real:false },
+  { id:4,  name:'GDPR – záznam o zpracování', cat:'Legislativa', ext:'DOCX', by:'Pavel N.', date:'28. 3. 2026', validity:'—', state:'ok', size:'0.3 MB', real:false },
+  { id:5,  name:'Požární evakuační plán', cat:'PO', ext:'PDF', by:'Karel V.', date:'5. 1. 2026', validity:'5. 1. 2028', state:'ok', size:'2.1 MB', real:false },
+  { id:6,  name:'Revize zdvihacího zařízení 2024', cat:'Revize', ext:'PDF', by:'Karel V.', date:'10. 6. 2024', validity:'10. 6. 2026', state:'expiring', size:'1.2 MB', real:false },
+  { id:7,  name:'Certifikát ekologické likvidace', cat:'Legislativa', ext:'PDF', by:'Pavel N.', date:'1. 3. 2025', validity:'1. 3. 2027', state:'ok', size:'0.7 MB', real:false },
+  { id:8,  name:'Smlouva – leasing vozidel 2026', cat:'Smlouvy', ext:'PDF', by:'Karel V.', date:'15. 1. 2026', validity:'15. 1. 2029', state:'ok', size:'1.8 MB', real:false },
+  { id:9,  name:'Záznamy nakládání s oleji Q1', cat:'BOZP', ext:'XLSX', by:'Lucie M.', date:'31. 3. 2026', validity:'—', state:'ok', size:'0.3 MB', real:false },
+  { id:10, name:'Kontrola hasicích přístrojů 2026', cat:'PO', ext:'PDF', by:'Pavel N.', date:'15. 2. 2026', validity:'15. 2. 2027', state:'ok', size:'0.6 MB', real:false },
+  { id:11, name:'Pojistná smlouva – budova 2026', cat:'Smlouvy', ext:'PDF', by:'Karel V.', date:'1. 1. 2026', validity:'31. 12. 2026', state:'ok', size:'0.9 MB', real:false },
+  { id:12, name:'Revize elektrické instalace 2023', cat:'Revize', ext:'PDF', by:'Karel V.', date:'20. 4. 2023', validity:'20. 4. 2028', state:'ok', size:'1.5 MB', real:false },
+]
+
+const autoservisProfiles = [
+  { id:1, name:'Karel Vomáčka', initials:'KV', role:'Vedoucí servisu', email:'karel@autoserviskovar.cz', color:'#E24B4A' },
+  { id:2, name:'Pavel Novák', initials:'PN', role:'Mechanik', email:'pavel@autoserviskovar.cz', color:'#534AB7' },
+  { id:3, name:'Lucie Marková', initials:'LM', role:'Administrativa', email:'lucie@autoserviskovar.cz', color:'#1D9E75' },
+]
+
+const firmy = [
+  { id:'lekarna', name:'Lékárna U Koruny', short:'Lékárna', color:'#534AB7' },
+  { id:'autoservis', name:'Autoservis Kovář', short:'Autoservis', color:'#E24B4A' },
 ]
 
 const catColor: Record<string,string> = { Revize:'#E8E0FF', BOZP:'#D1FAE5', Smlouvy:'#DBEAFE', Legislativa:'#FEF3C7', PO:'#FFE4E6' }
@@ -69,8 +117,10 @@ const predavaniChecklist = [
 type Doc = { id:number, name:string, cat:string, ext:string, by:string, date:string, validity:string, state:string, size:string, real:boolean, url?:string }
 
 export default function Home() {
-  const [items, setItems] = useState(initialPovinnosti)
-  const [docs, setDocs] = useState<Doc[]>(sampleDocs)
+  const [activeFirma, setActiveFirma] = useState('lekarna')
+  const [showFirmaSwitch, setShowFirmaSwitch] = useState(false)
+  const [items, setItems] = useState(lekarnaPovinnosti)
+  const [docs, setDocs] = useState<Doc[]>(lekarnaDocs)
   const [activePage, setActivePage] = useState('dashboard')
   const [filter, setFilter] = useState('vse')
   const [docSearch, setDocSearch] = useState('')
@@ -94,17 +144,19 @@ export default function Home() {
   const [uploadValidity, setUploadValidity] = useState('')
   const [uploadFile, setUploadFile] = useState<File|null>(null)
   const [checklistItems, setChecklistItems] = useState(predavaniChecklist)
-  const [predavaniOdchod, setPredavaniOdchod] = useState('Petr Kovář')
+  const [predavaniOdchod, setPredavaniOdchod] = useState('')
   const [predavaniNastupce, setPredavaniNastupce] = useState('')
   const fileRef = useRef<HTMLInputElement>(null)
 
-  const activeProfile = profiles.find(p => p.id === activeProfileId) || profiles[0]
+  const currentProfiles = activeFirma === 'lekarna' ? profiles : autoservisProfiles
+  const activeProfile = currentProfiles.find(p => p.id === activeProfileId) || currentProfiles[0]
 
   const toggle = (id: number) => {
     setItems(prev => prev.map(p => {
       if (p.id !== id) return p
       const done = !p.done
-      return { ...p, done, status: done ? 'done' : (id === 1 ? 'overdue' : id <= 3 || id === 13 ? 'warning' : 'normal') }
+      const origStatus = p.status === 'done' ? 'normal' : p.status
+      return { ...p, done, status: done ? 'done' : origStatus }
     }))
   }
 
@@ -157,7 +209,7 @@ export default function Home() {
 
   const potvrditPredavani = () => {
     if (!predavaniNastupce.trim()) return
-    const odProfile = profiles.find(p => p.name === predavaniOdchod)
+    const odProfile = currentProfiles.find(p => p.name === predavaniOdchod)
     const odShort = odProfile ? odProfile.name.split(' ')[0] + ' ' + odProfile.name.split(' ')[1][0] + '.' : predavaniOdchod
     const nastupceJmena = predavaniNastupce.trim().split(' ')
     const naShort = nastupceJmena[0] + ' ' + (nastupceJmena[1]?.[0] || '') + '.'
@@ -165,7 +217,7 @@ export default function Home() {
     const dnes = new Date().toLocaleDateString('cs-CZ', {day:'numeric', month:'numeric', year:'numeric'})
     setPredavaniLog(prev => [{od: predavaniOdchod, na: predavaniNastupce, datum: dnes}, ...prev])
     setChecklistItems(predavaniChecklist.map(c => ({...c, done: false})))
-    const zbyvajici = profiles.find(p => p.name !== predavaniOdchod)
+    const zbyvajici = currentProfiles.find(p => p.name !== predavaniOdchod)
     if (zbyvajici) setPredavaniOdchod(zbyvajici.name)
     setPredavaniNastupce('')
     setPredavaniDone(true)
@@ -173,6 +225,26 @@ export default function Home() {
   }
 
   const saveProfile = () => { setProfileSaved(true); setTimeout(() => setProfileSaved(false), 2000) }
+
+  const switchFirma = (id: string) => {
+    setActiveFirma(id)
+    setShowFirmaSwitch(false)
+    setActivePage('dashboard')
+    setFilter('vse')
+    setDocSearch('')
+    setDocCat('')
+    if (id === 'lekarna') {
+      setItems(lekarnaPovinnosti)
+      setDocs(lekarnaDocs)
+      setFirma('Lékárna U Koruny s.r.o.')
+      setActiveProfileId(1)
+    } else {
+      setItems(autoservisPovinnosti)
+      setDocs(autoservisDocs)
+      setFirma('Autoservis Kovář s.r.o.')
+      setActiveProfileId(1)
+    }
+  }
 
   const overdueCount = items.filter(p => p.status === 'overdue').length
   const filteredPov = items.filter(p => {
@@ -250,9 +322,27 @@ export default function Home() {
 
       {/* SIDEBAR */}
       <div style={c.sidebar}>
-        <div style={{padding:'18px 16px 14px', borderBottom:'0.5px solid rgba(255,255,255,0.08)'}}>
-          <div style={{fontSize:'15px', fontWeight:'500', color:'#fff'}}>(na)KLID</div>
-          <div style={{fontSize:'11px', color:'rgba(255,255,255,0.35)', marginTop:'2px'}}>{firma}</div>
+        <div style={{padding:'14px 16px', borderBottom:'0.5px solid rgba(255,255,255,0.08)', position:'relative'}}>
+          <div style={{fontSize:'15px', fontWeight:'500', color:'#fff', marginBottom:'6px'}}>(na)KLID</div>
+          {showFirmaSwitch && (
+            <div style={{position:'absolute', top:'60px', left:'12px', right:'12px', background:'#2a2a3e', borderRadius:'10px', border:'0.5px solid rgba(255,255,255,0.1)', overflow:'hidden', zIndex:30}}>
+              {firmy.map(f => (
+                <div key={f.id} onClick={() => switchFirma(f.id)} style={{display:'flex', alignItems:'center', gap:'9px', padding:'10px 12px', cursor:'pointer', background: activeFirma===f.id?'rgba(255,255,255,0.1)':'transparent', borderBottom:'0.5px solid rgba(255,255,255,0.06)'}}>
+                  <div style={{width:'8px', height:'8px', borderRadius:'50%', background:f.color, flexShrink:0}}></div>
+                  <div style={{flex:1}}>
+                    <div style={{fontSize:'12px', fontWeight:'500', color:'#fff'}}>{f.name}</div>
+                    <div style={{fontSize:'10px', color:'rgba(255,255,255,0.4)'}}>{f.short}</div>
+                  </div>
+                  {activeFirma===f.id && <span style={{fontSize:'12px', color:'#1D9E75'}}>✓</span>}
+                </div>
+              ))}
+            </div>
+          )}
+          <div onClick={() => setShowFirmaSwitch(s => !s)} style={{display:'flex', alignItems:'center', gap:'8px', cursor:'pointer', background:'rgba(255,255,255,0.07)', borderRadius:'8px', padding:'6px 10px'}}>
+            <div style={{width:'8px', height:'8px', borderRadius:'50%', background: activeFirma==='lekarna'?'#534AB7':'#E24B4A', flexShrink:0}}></div>
+            <div style={{flex:1, fontSize:'12px', color:'rgba(255,255,255,0.8)', fontWeight:'500'}}>{firma.replace(' s.r.o.','')}</div>
+            <span style={{fontSize:'10px', color:'rgba(255,255,255,0.3)'}}>⇅</span>
+          </div>
         </div>
         <div style={{flex:1, padding:'10px 8px'}}>
           {navItem('dashboard','▦','Přehled')}
@@ -265,7 +355,7 @@ export default function Home() {
         <div style={{padding:'12px', borderTop:'0.5px solid rgba(255,255,255,0.08)', position:'relative'}}>
           {showProfileSwitch && (
             <div style={{position:'absolute', bottom:'60px', left:'12px', right:'12px', background:'#2a2a3e', borderRadius:'10px', border:'0.5px solid rgba(255,255,255,0.1)', overflow:'hidden', zIndex:20}}>
-              {profiles.map(p => (
+              {currentProfiles.map(p => (
                 <div key={p.id} onClick={() => { setActiveProfileId(p.id); setShowProfileSwitch(false) }} style={{display:'flex', alignItems:'center', gap:'9px', padding:'9px 12px', cursor:'pointer', background: activeProfileId===p.id?'rgba(255,255,255,0.1)':'transparent', borderBottom:'0.5px solid rgba(255,255,255,0.06)'}}>
                   <div style={{width:'26px', height:'26px', borderRadius:'50%', background:p.color, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'10px', fontWeight:'600', color:'#fff', flexShrink:0}}>{p.initials}</div>
                   <div><div style={{fontSize:'12px', fontWeight:'500', color:'#fff'}}>{p.name}</div><div style={{fontSize:'10px', color:'rgba(255,255,255,0.4)'}}>{p.role}</div></div>
@@ -362,7 +452,7 @@ export default function Home() {
                     </div>
                     <div style={c.card}>
                       <div style={{fontSize:'13px', fontWeight:'500', marginBottom:'10px', color:'#1a1a2e'}}>Tým</div>
-                      {profiles.map(p => (
+                      {currentProfiles.map(p => (
                         <div key={p.id} style={{display:'flex', alignItems:'center', gap:'9px', padding:'7px 0', borderBottom:'0.5px solid #f5f3ef'}}>
                           <div style={{width:'26px', height:'26px', borderRadius:'50%', background:p.color, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'10px', fontWeight:'600', color:'#fff'}}>{p.initials}</div>
                           <div style={{flex:1}}><div style={{fontSize:'12px', fontWeight:'500', color:'#1a1a2e'}}>{p.name}</div><div style={{fontSize:'11px', color:'#999'}}>{p.role}</div></div>
@@ -498,8 +588,8 @@ export default function Home() {
                       <div style={{fontSize:'13px', fontWeight:'500', marginBottom:'12px', color:'#1a1a2e'}}>Detaily předávání</div>
                       <div style={{marginBottom:'10px'}}>
                         <div style={{fontSize:'11px', color:'#666', marginBottom:'3px', fontWeight:'500'}}>Odchází</div>
-                        <select value={predavaniOdchod} onChange={e=>setPredavaniOdchod(e.target.value)} style={{width:'100%', padding:'7px 10px', border:'0.5px solid #d4d0c8', borderRadius:'8px', fontSize:'13px'}}>
-                          {profiles.map(p=><option key={p.id}>{p.name}</option>)}
+                        <select value={predavaniOdchod || currentProfiles[0]?.name} onChange={e=>setPredavaniOdchod(e.target.value)} style={{width:'100%', padding:'7px 10px', border:'0.5px solid #d4d0c8', borderRadius:'8px', fontSize:'13px'}}>
+                          {currentProfiles.map(p=><option key={p.id}>{p.name}</option>)}
                         </select>
                       </div>
                       <div style={{marginBottom:'12px'}}>
@@ -567,7 +657,7 @@ export default function Home() {
                     {([['Jméno','name'],['E-mail','email']] as [string,string][]).map(([label,key]) => (
                       <div key={key}>
                         <div style={{fontSize:'11px', color:'#666', marginBottom:'3px', fontWeight:'500'}}>{label}</div>
-                        <input defaultValue={(profiles.find(p=>p.id===activeProfileId) as typeof profiles[0])[key as 'name'|'email']} style={{width:'100%', padding:'7px 10px', border:'0.5px solid #d4d0c8', borderRadius:'8px', fontSize:'13px', boxSizing:'border-box'}} />
+                        <input defaultValue={(currentProfiles.find(p=>p.id===activeProfileId) as typeof profiles[0])[key as 'name'|'email']} style={{width:'100%', padding:'7px 10px', border:'0.5px solid #d4d0c8', borderRadius:'8px', fontSize:'13px', boxSizing:'border-box'}} />
                       </div>
                     ))}
                     <div>
